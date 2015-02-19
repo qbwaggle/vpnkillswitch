@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          vpnkillswitch
-# Required-Start:    $local_fs $network $named $time $syslog
-# Required-Stop:     $local_fs $network $named $time $syslog
+# Required-Start:    $local_fs $network $named $time $syslog $ALL
+# Required-Stop:     $local_fs $network $named $time $syslog $ALL
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Description:       vpnkillswitch
