@@ -11,7 +11,7 @@
 # only and therefore I offer no warranties.
 
 # This script needs to be run with sudo.
-# ex. sudo ./openvpn_pia_setup.sh
+# ex. sudo ./install.sh
 
 # Update packages
 apt-get update
