@@ -25,16 +25,18 @@ if [[ $CHECK_VPN != *"Status: install ok"* ]]; then
 fi
 
 # Download PIA OpenVPN config files
-wget -P /etc/openvpn https://www.privateinternetaccess.com/openvpn/openvpn.zip
+mkdir /etc/openvpn/pia
+wget -P /etc/openvpn/pia https://www.privateinternetaccess.com/openvpn/openvpn.zip
 CHECK_UNZIP=$(dpkg -s unzip)
 if [[ $CHECK_UNZIP != *"Status: install ok"* ]]; then
 	apt-get install unzip
 fi
-unzip /etc/openvpn/openvpn.zip
+unzip /etc/openvpn/pia/openvpn.zip -d /etc/openvpn/pia
 
 # Choose PIA server
-cd /etc/openvpn
+cd /etc/openvpn/pia
 echo ""
+echo "Available servers:"
 for f in *.ovpn
 do
 	echo "${f%%.*}"
@@ -42,7 +44,7 @@ done
 echo ""
 echo "Enter name of your desired PIA server from list above:"
 read SERVER
-cp "$SERVER.ovpn" "$SERVER.conf"
+cp "$SERVER.ovpn" /etc/openvpn/"$SERVER.conf"
 
 # Enter PIA credentials and save to file "login.info"
 echo ""
@@ -50,6 +52,7 @@ echo "Enter PIA login:"
 read LOGIN
 echo "Enter PIA password:"
 read PASSWORD
+cd /etc/openvpn
 if ls login.info > /dev/null 2>&1; then 
 	rm login.info # if login.info exists, then delete it
 fi
@@ -76,7 +79,7 @@ wget -P /usr/vpnkillswitch https://raw.githubusercontent.com/qbwaggle/rpi_script
 wget -P /usr/vpnkillswitch https://raw.githubusercontent.com/qbwaggle/rpi_scripts/master/openvpn_pia/run.sh
 chmod 755 /usr/vpnkillswitch/*.sh
 cp /usr/vpnkillswitch/service.sh /etc/init.d/vpnkillswitch
-update-rc.d vpnkillswitch
+update-rc.d vpnkillswitch defaults
 
 echo ""
 echo "Please reboot using \"sudo reboot\" now."
