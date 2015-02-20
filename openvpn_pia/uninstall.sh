@@ -14,5 +14,6 @@ apt-get purge openvpn
 service vpnkillswitch uninstall
 
 # Clean-up files
+rm /etc/init.d/vpnkillswitch
 rm -r /usr/vpnkillswitch
-rm /etc/openvpn/*
+rm -r /etc/openvpn/pia
