@@ -12,7 +12,7 @@ sleep 5
 echo "Reconfiguring kill switch..."
 
 # Get WAN IP
-WAN_IP=$(wget http://ipecho.net/plain)
+WAN_IP=$(wget -q -O - http://ipecho.net/plain)
 
 # Configure IPTable rules
 iptables -t nat -F
@@ -36,12 +36,25 @@ PING=$(ping -c 1 google.com)
 
 while [ true ]
 do
+
+VPN=$(service openvpn status)
+PING=$(ping -c 1 google.com)
+WAN_IP=$(wget -q -O - http://ipecho.net/plain)
+IPT=$(iptables -L)
+
 if [[ "$VPN" == *"is running"* ]]
 then
 	echo "VPN is running"
 	if [[ "$PING" == *"1 received"* ]]
 	then
 		echo "Internet OK"
+		if [[ "$IPT" == *"$WAN_IP"* ]]
+		then
+			echo "IPTables OK"
+		else
+			echo "IPTables not configured properly"
+			restartVPN
+		fi
 	else
 		echo "Internet down... Need to restart VPN"
 		restartVPN
