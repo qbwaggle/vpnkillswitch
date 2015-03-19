@@ -1,9 +1,9 @@
-### Various shell scripts for Raspberry Pi (Raspbian).
+### VPNKillSwitch
 
-For example, install and configure OpenVPN client with Private Internet Access (PIA) VPN, including DNS leak protection, kill switch, and auto-reconnect.
+This was originially developed with Raspberry Pi 2 Model B, but should work fine with other Debian installations.
 
-I created these scripts for my own personal use. Please use at your own risk. I offer no warranties.
+I have tested it on Debian 7.x and it works.
 
-These scripts have been tested on my Raspberry Pi 2 Model B with a fresh installation of Raspbian Wheezy.
+VPNKillSwitch is a service that runs a script every 30 seconds to determine if (1) OpenVPN client is still connected, (2) if an internet connection is active, and (3) if the IPTables firewall rules are configured properly such that if VPN connection is lost, no data is sent or received. If any of the 3 tests fails, then the script will attempt to reconnect the client to the VPN and reconfigure the IPTables firewall rules.
 
 The Wiki will provide better instruction.
