@@ -5,6 +5,10 @@
 restartVPN()
 {
 echo "Restarting VPN..."
+
+# Stop deluge-daemon
+# service deluge-daemon stop
+
 iptables -F
 service openvpn restart
 sleep 5
@@ -29,6 +33,9 @@ iptables -A FORWARD -i eth0 -o tun0 -j ACCEPT
 iptables -A FORWARD -i tun0 -o eth0 -j ACCEPT
 iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
 iptables -A OUTPUT -o eth0 ! -d $WAN_IP -j DROP
+
+# Start deluge-daemon
+# service deluge-daemon start
 }
 
 VPN=$(service openvpn status)
