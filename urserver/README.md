@@ -8,7 +8,7 @@ sudo dpkg -i urserver-3.2.4.420.deb
 
 ##### To start urserver at boot:
 ```
-wget https://raw.githubusercontent.com/qbwaggle/rpi_scripts/master/urserver/urserver.sh
+wget http://raw.githubusercontent.com/qbwaggle/rpi_scripts/master/urserver/urserver.sh
 chmod 755 urserver.sh
 cp urserver.sh /etc/init.d/urserver
 update-rc.d urserver defaults
