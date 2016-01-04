@@ -4,6 +4,12 @@ VPNKillSwitch is a script that can be run on a schedule using cron (see below fo
 
 The Wiki provides better instructions on the aforementioned configuration.
 
-### Cron
+### Running Script with Cron
 
 In Debian 8.x edit the crontab file with the following command: `nano /etc/crontab`
+
+Add the following line to the end of the file:
+
+`*1/ * * * * root /usr/vpnkillswitch/vpnkillswitch.sh`
+
+Change the location of vpnkillswitch.sh as needed.
