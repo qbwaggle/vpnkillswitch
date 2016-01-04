@@ -1,9 +1,9 @@
 ### VPNKillSwitch
 
-This was originially developed with Raspberry Pi 2 Model B, but should work fine with other Debian installations.
+VPNKillSwitch is a script that can be run on a schedule using cron (see below for my implementation). It determines if (1) OpenVPN client is still connected, (2) if an internet connection is active, and (3) if the IPTables firewall rules are configured properly such that if VPN connection is lost, no data is sent or received. If any of the 3 tests fails, then the script will attempt to reconnect the client to the VPN and reconfigure the IPTables firewall rules.
 
-I have tested it on Debian 7.x and it works.
+The Wiki provides better instructions on the aforementioned configuration.
 
-VPNKillSwitch is a service that runs a script every 30 seconds to determine if (1) OpenVPN client is still connected, (2) if an internet connection is active, and (3) if the IPTables firewall rules are configured properly such that if VPN connection is lost, no data is sent or received. If any of the 3 tests fails, then the script will attempt to reconnect the client to the VPN and reconfigure the IPTables firewall rules.
+### Cron
 
-The Wiki will provide better instruction.
+In Debian 8.x edit the crontab file with the following command: `nano /etc/crontab`
