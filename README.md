@@ -12,4 +12,4 @@ Add the following line to the end of the file:
 
 `*1/ * * * * root /usr/vpnkillswitch/vpnkillswitch.sh`
 
-Change the location of vpnkillswitch.sh as needed.
+Change the path of `vpnkillswitch.sh` as needed.
