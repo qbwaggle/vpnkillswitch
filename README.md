@@ -10,7 +10,7 @@ In Debian 8.x edit the crontab file with the following command: `nano /etc/cront
 
 Add the following line to the end of the file:
 
-`*1/ * * * * root /usr/vpnkillswitch/vpnkillswitch.sh`
+`*/1 * * * * root /usr/vpnkillswitch/vpnkillswitch.sh`
 
 Change the path of `vpnkillswitch.sh` as needed.
 
