@@ -20,6 +20,7 @@ if [ "$DEBUG_MODE" = true ] ; then echo "Reconfiguring kill switch..." >> $DEBUG
 WAN_IP=$(wget -q -O - http://ipecho.net/plain)
 
 # Configure IPTable rules
+# Change eth0 to wlan0 (or whatever network interface is being used) for wireless
 iptables -t nat -F
 iptables -t nat -X
 iptables -t mangle -F
